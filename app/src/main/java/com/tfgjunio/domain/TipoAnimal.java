@@ -31,5 +31,9 @@ public class TipoAnimal {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre; // Esto asegurará que el nombre se muestre en el spinner
+    }
 
 }

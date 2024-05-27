@@ -67,14 +67,19 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnFinalizarCrianza.setOnClickListener(v -> {
             long crianzaId = preferencesHelper.getCrianzaId();
             if (crianzaId != -1) {
-                LocalDate fechaFin = LocalDate.now();
-                Crianza crianza = new Crianza(crianzaId, fechaFin);
-                modifyCrianzaPresenter.modifyCrianza(crianzaId, crianza);
+                String fechaInicioStr = preferencesHelper.getCrianzaFechaInicio();
+                if(fechaInicioStr != null) {
+                    LocalDate fechaInicio = LocalDate.parse(fechaInicioStr);
+                    LocalDate fechaFin = LocalDate.now();
+                    Crianza crianza = new Crianza(crianzaId, fechaInicio, fechaFin, null, null, null);
+                    modifyCrianzaPresenter.modifyCrianza(crianzaId, crianza);
+                } else {
+                    Toast.makeText(AddCrianzaView.this, "Fecha de inicio no disponible", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(AddCrianzaView.this, "No hay crianza activa para finalizar", Toast.LENGTH_SHORT).show();
             }
         });
-
         btnCrianzaAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(AddCrianzaView.this, AddAnimalView.class);
             startActivity(intent);
