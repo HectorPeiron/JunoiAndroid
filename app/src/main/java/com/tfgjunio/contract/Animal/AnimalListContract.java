@@ -16,7 +16,7 @@ public interface AnimalListContract {
     }
 
     interface View {
-        void showAnimales(List<Animal> animales);
+        void showAnimales(List<Animal> animals);
 
         void showMessage(String message);
     }

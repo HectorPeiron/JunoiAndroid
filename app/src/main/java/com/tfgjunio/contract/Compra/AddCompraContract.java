@@ -26,4 +26,3 @@ public interface AddCompraContract {
         void addCompra(Compra compra);
     }
 }
-

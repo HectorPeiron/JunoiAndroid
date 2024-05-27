@@ -2,33 +2,47 @@ package com.tfgjunio.presenter.Animal;
 
 import com.tfgjunio.contract.Animal.AddAnimalContract;
 import com.tfgjunio.domain.Animal;
-import com.tfgjunio.model.Animal.AddAnimalModel;
+import com.tfgjunio.domain.TipoAnimal;
 
-public class AddAnimalPresenter implements AddAnimalContract.Presenter, AddAnimalContract.Model.OnRegisterAnimalListener {
-    private AddAnimalModel model;
-    private AddAnimalView view;
+import java.util.List;
 
-    public AddAnimalPresenter(AddAnimalView view) {
-        this.model = new AddAnimalModel();
+public class AddAnimalPresenter implements AddAnimalContract.Presenter {
+
+    private AddAnimalContract.View view;
+    private AddAnimalContract.Model model;
+
+    public AddAnimalPresenter(AddAnimalContract.View view, AddAnimalContract.Model model) {
         this.view = view;
+        this.model = model;
+    }
+
+    @Override
+    public void loadTipoAnimales() {
+        model.loadTipoAnimales(new AddAnimalContract.Model.OnTipoAnimalesLoadedListener() {
+            @Override
+            public void onTipoAnimalesLoaded(List<TipoAnimal> tipoAnimales) {
+                view.showTipoAnimales(tipoAnimales);
+            }
+
+            @Override
+            public void onLoadError(String message) {
+                view.showError(message);
+            }
+        });
     }
 
     @Override
     public void addAnimal(Animal animal) {
-        model.addAnimal(animal, this);
-    }
+        model.addAnimal(animal, new AddAnimalContract.Model.OnAnimalAddedListener() {
+            @Override
+            public void onAnimalAdded(Animal animal) {
+                view.onAnimalAdded(animal);
+            }
 
-
-    @Override
-    public void onRegisterSuccess(Animal animal) {
-        view.showMessage("El Animal " + animal.getNombre() + "se ha añadido correctamente.");
-
-    }
-
-    @Override
-    public void onRegisterError(String message) {
-        view.showError("Se ha producido un error al añadir Animal");
-
+            @Override
+            public void onAddError(String message) {
+                view.showError(message);
+            }
+        });
     }
 }
-

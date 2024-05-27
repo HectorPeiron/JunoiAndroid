@@ -11,7 +11,7 @@ public interface ModifyAnimalContract {
             void onModifyError(String message);
         }
 
-        void modifyAnimal(long id, Animal animal, ModifyAnimalContract.Model.OnModifyAnimalListener listener);
+        void modifyAnimal(long id, Animal animal, OnModifyAnimalListener listener);
     }
 
     interface View {

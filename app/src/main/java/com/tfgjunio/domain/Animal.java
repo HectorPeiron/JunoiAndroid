@@ -1,39 +1,41 @@
 package com.tfgjunio.domain;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Animal implements Serializable {
-
-    private Long id;
+public class Animal {
+    private long id;
     private LocalDate fechaLlegada;
     private int numero;
-    private int bajas;
     private String sexo;
     private BigDecimal peso;
     private TipoAnimal animalTipoAnimal;
     private Crianza animalCrianza;
 
-    public Animal(Long id, LocalDate fechaLlegada, int numero, int bajas, String sexo, BigDecimal peso, TipoAnimal animalTipoAnimal, Crianza animalCrianza) {
-        this.id = id;
+    public Animal(LocalDate fechaLlegada, int numero, String sexo, BigDecimal peso, TipoAnimal animalTipoAnimal, Crianza animalCrianza) {
         this.fechaLlegada = fechaLlegada;
         this.numero = numero;
-        this.bajas = bajas;
         this.sexo = sexo;
         this.peso = peso;
         this.animalTipoAnimal = animalTipoAnimal;
         this.animalCrianza = animalCrianza;
     }
 
-    public Animal() {
+    public Animal(long id, LocalDate fechaLlegada, int numero, String sexo, BigDecimal peso, TipoAnimal animalTipoAnimal, Crianza animalCrianza) {
+        this.id = id;
+        this.fechaLlegada = fechaLlegada;
+        this.numero = numero;
+        this.sexo = sexo;
+        this.peso = peso;
+        this.animalTipoAnimal = animalTipoAnimal;
+        this.animalCrianza = animalCrianza;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -51,14 +53,6 @@ public class Animal implements Serializable {
 
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public int getBajas() {
-        return bajas;
-    }
-
-    public void setBajas(int bajas) {
-        this.bajas = bajas;
     }
 
     public String getSexo() {

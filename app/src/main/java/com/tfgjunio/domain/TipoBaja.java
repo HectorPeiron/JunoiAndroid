@@ -1,16 +1,16 @@
 package com.tfgjunio.domain;
 
-public class TipoAnimal {
+public class TipoBaja {
     private long id;
     private String nombre;
 
     // Constructor sin id
-    public TipoAnimal(String nombre) {
+    public TipoBaja(String nombre) {
         this.nombre = nombre;
     }
 
     // Constructor con id
-    public TipoAnimal(long id, String nombre) {
+    public TipoBaja(long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -30,6 +30,4 @@ public class TipoAnimal {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-
 }

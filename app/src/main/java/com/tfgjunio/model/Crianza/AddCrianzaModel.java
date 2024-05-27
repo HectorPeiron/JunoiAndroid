@@ -5,38 +5,47 @@ import android.util.Log;
 
 import com.tfgjunio.api.JunioAPI;
 import com.tfgjunio.api.JunioApiInterface;
+import com.tfgjunio.contract.Crianza.AddCrianzaContract;
 import com.tfgjunio.domain.Crianza;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddCrianzaModel  implements AddCrianzaContract.Model {
+public class AddCrianzaModel implements AddCrianzaContract.Model {
 
     @Override
     public void addCrianza(Crianza crianza, OnRegisterCrianzaListener listener) {
         try {
-
             JunioApiInterface junioApiInterface = JunioAPI.buildInstance();
-            Call<Crianza> callCrianzas = junioApiInterface.addCrianza(crianza);
-            Log.d("Crianzas", "llamada desde el addCrianzaModel");
-            callCrianzas.enqueue(new Callback<Crianza>() {
+            Call<Crianza> callCrianza = junioApiInterface.addCrianza(crianza);
+            Log.d("Crianza", "Llamada desde AddCrianzaModel");
+            callCrianza.enqueue(new Callback<Crianza>() {
                 @Override
                 public void onResponse(Call<Crianza> call, Response<Crianza> response) {
-                    Crianza crianza = response.body();
-                    listener.onRegisterSuccess(crianza);
+                    if (response.isSuccessful() && response.body() != null) {
+                        Crianza newCrianza = response.body();
+                        listener.onRegisterSuccess(newCrianza);
+                    } else {
+                        String errorMessage = "Error en la respuesta: " + response.code() + " " + response.message();
+                        Log.e("Crianza", errorMessage);
+                        listener.onRegisterError(errorMessage);
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<Crianza> call, Throwable t) {
                     t.printStackTrace();
-                    String message = "Error al invocar la operación Crianza";
+                    String message = "Error al invocar la operación: " + t.getMessage();
+                    Log.e("Crianza", message);
                     listener.onRegisterError(message);
                 }
             });
         } catch (SQLiteConstraintException sce) {
             sce.printStackTrace();
+            String message = "Error de restricción de SQLite: " + sce.getMessage();
+            Log.e("Crianza", message);
+            listener.onRegisterError(message);
         }
     }
 }
-

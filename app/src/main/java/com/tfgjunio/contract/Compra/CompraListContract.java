@@ -12,7 +12,7 @@ public interface CompraListContract {
             void onLoadComprasError(String message);
         }
 
-        void loadAllCompras(CompraListContract.Model.OnLoadCompraListener listener);
+        void loadAllCompras(OnLoadCompraListener listener);
     }
 
     interface View {
@@ -24,5 +24,4 @@ public interface CompraListContract {
     interface Presenter {
         void loadAllCompras();
     }
-
 }

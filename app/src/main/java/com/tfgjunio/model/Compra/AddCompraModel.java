@@ -19,7 +19,7 @@ public class AddCompraModel implements AddCompraContract.Model {
         try {
             JunioApiInterface junioApiInterface = JunioAPI.buildInstance();
             Call<Compra> callCompras = junioApiInterface.addCompra(compra);
-            Log.d("Compra", "llamada desde el addCompraModel");
+            Log.d("compras", "llamada desde el AddCompraModel");
             callCompras.enqueue(new Callback<Compra>() {
                 @Override
                 public void onResponse(Call<Compra> call, Response<Compra> response) {
@@ -39,4 +39,3 @@ public class AddCompraModel implements AddCompraContract.Model {
         }
     }
 }
-

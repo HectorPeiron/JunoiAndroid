@@ -1,26 +1,25 @@
 package com.tfgjunio.domain;
 
-
-import java.io.Serializable;
-
-public class TipoRecurso implements Serializable {
-
-    private Long id;
+public class TipoRecurso {
+    private long id;
     private String nombre;
 
-    public TipoRecurso(Long id, String nombre) {
+    // Constructor sin id
+    public TipoRecurso(String nombre) {
+        this.nombre = nombre;
+    }
+
+    // Constructor con id
+    public TipoRecurso(long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public TipoRecurso() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,6 +1,5 @@
 package com.tfgjunio.model.Animal;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.tfgjunio.api.JunioAPI;
@@ -16,23 +15,16 @@ import retrofit2.Response;
 
 public class AnimalListModel implements AnimalListContract.Model {
 
-    private Context context;
-
-    public AnimalListModel(Context context) {
-        this.context = context;
-    }
-
     @Override
     public void loadAllAnimales(OnLoadAnimalListener listener) {
-
         JunioApiInterface junioApiInterface = JunioAPI.buildInstance();
         Call<List<Animal>> callAnimales = junioApiInterface.getAnimales();
-        Log.d("Animales", "llamada desde el Animales model");
+        Log.d("animales", "llamada desde el AnimalListModel");
         callAnimales.enqueue(new Callback<List<Animal>>() {
             @Override
             public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
                 Log.d("Animales", "llamada desde el Animales model OK");
-                List<Animal>animales = response.body();
+                List<Animal> animales = response.body();
                 listener.onLoadAnimalesSuccess(animales);
             }
 
@@ -42,7 +34,6 @@ public class AnimalListModel implements AnimalListContract.Model {
                 t.printStackTrace();
                 String message = "Error al invocar la operación";
                 listener.onLoadAnimalesError(message);
-
             }
         });
     }

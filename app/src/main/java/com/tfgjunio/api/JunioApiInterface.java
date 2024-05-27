@@ -1,6 +1,5 @@
 package com.tfgjunio.api;
 
-
 import com.tfgjunio.domain.*;
 
 import java.util.List;
@@ -15,95 +14,111 @@ import retrofit2.http.Path;
 
 public interface JunioApiInterface {
 
-    //ANIMALES
+    // Animal endpoints
     @GET("/animales")
     Call<List<Animal>> getAnimales();
 
-    @POST("/tipoAnimales/{tipoAnimalId}/crianzas/{crianzaId}/animales")
+    @POST("/animales")
     Call<Animal> addAnimal(@Body Animal animal);
 
-    @DELETE("/animales/{id}")
-    Call<Void> deleteAnimales(@Path("id") long id);
-
     @PUT("/animales/{id}/{tipoAnimalId}/{crianzaId}")
-    Call<Animal> modifyAnimal(@Path("id") long id, @Body Animal animal);
+    Call<Animal> modifyAnimal(@Path("id") long id, @Path("tipoAnimalId") long tipoAnimalId, @Path("crianzaId") long crianzaId, @Body Animal animal);
 
+    @DELETE("/animales/{id}")
+    Call<Void> deleteAnimal(@Path("id") long id);
 
-    //COMPRA
+    // Baja endpoints
+    @GET("/bajas")
+    Call<List<Baja>> getBajas();
+
+    @POST("/bajas")
+    Call<Baja> addBaja(@Body Baja baja);
+
+    @PUT("/bajas/{id}/{tipoBajaId}/{crianzaId}")
+    Call<Baja> modifyBaja(@Path("id") long id, @Path("tipoBajaId") long tipoBajaId, @Path("crianzaId") long crianzaId, @Body Baja baja);
+
+    @DELETE("/bajas/{id}")
+    Call<Void> deleteBaja(@Path("id") long id);
+
+    // Compra endpoints
     @GET("/compras")
     Call<List<Compra>> getCompras();
 
-    @POST("/recursos/{recursoId}/crianzas/{crianzaId}/compras")
+    @POST("/compras")
     Call<Compra> addCompra(@Body Compra compra);
 
     @DELETE("/compras/{id}")
-    Call<Void> deleteCompras(@Path("id") long id);
+    Call<Void> deleteCompra(@Path("id") long id);
 
-    @PUT("/compras/{id}/{recursoId}/{crianzaId}")
-    Call<Compra> modifyCompra(@Path("id") long id, @Body Compra compra);
-
-
-    //CRIANZA
+    // Crianza endpoints
     @GET("/crianzas")
     Call<List<Crianza>> getCrianzas();
 
-    @POST("/animales/{animalId}/compras/{compraId}/veterinarios/{veterinarioId}/crianzas")
+    @POST("/crianzas")
     Call<Crianza> addCrianza(@Body Crianza crianza);
+
+    @PUT("/crianzas/{id}")
+    Call<Crianza> modifyCrianza(@Path("id") long id, @Body Crianza crianza);
 
     @DELETE("/crianzas/{id}")
     Call<Void> deleteCrianza(@Path("id") long id);
 
-    @PUT("/crianzas/{id}/{animalId}/{compraId}/{veterinarioId}")
-    Call<Crianza> modifyCrianza(@Path("id") long id, @Body Crianza crianza);
-
-
-
-    //RECURSO
+    // Recurso endpoints
     @GET("/recursos")
     Call<List<Recurso>> getRecursos();
 
-    @POST("/tipoRecursos/{tipoRecursoId}/tipoAnimales/{tipoAnimalId}/unidades/{unidadId}/recursos")
-    Call<Recurso> addRecurso(@Body Recurso recurso);
+    @GET("/recursos/{id}")
+    Call<Recurso> getRecurso(@Path("id") long id);
 
-    @DELETE("/recursos/{id}")
-    Call<Void> deleteRecurso(@Path("id") long id);
-
-    @PUT("/recursos/{id}/{tipoRecursoId}/{tipoAnimalId}/{unidadId}")
-    Call<Recurso> modifyRecurso(@Path("id") long id, @Body Recurso recurso);
-
-
-    //VETERINARIO
-    @GET("/veterinarios")
-    Call<List<Veterinario>> getVeterinarios();
-
-    @POST("/crianzas/{crianzaId}/veterinarios")
-    Call<Veterinario> addVeterinario(@Body Veterinario veterinario);
-
-    @DELETE("/veterinarios/{id}")
-    Call<Void> deleteVeterinario(@Path("id") long id);
-
-    @PUT("/veterinarios/{id}/{crianzaId}")
-    Call<Veterinario> modifyVeterinario(@Path("id") long id, @Body Veterinario veterinario);
-
-    //TIPO ANIMAL
-    @GET("/tipoAnimales/{tipoAnimalesId}")
+    // TipoAnimal endpoints
+    @GET("/tipoAnimales")
     Call<List<TipoAnimal>> getTipoAnimales();
 
     @POST("/tipoAnimales")
     Call<TipoAnimal> addTipoAnimal(@Body TipoAnimal tipoAnimal);
 
-    //TIPO RECURSO
-    @GET("/tipRecursos/{tipRecursosId}")
+    @GET("/tipoAnimales/{id}")
+    Call<TipoAnimal> getTipoAnimal(@Path("id") long id);
+
+    // TipoBaja endpoints
+    @GET("/tipoBajas")
+    Call<List<TipoBaja>> getTipoBajas();
+
+    @POST("/tipoBajas")
+    Call<TipoBaja> addTipoBaja(@Body TipoBaja tipoBaja);
+
+    @GET("/tipoBajas/{id}")
+    Call<TipoBaja> getTipoBaja(@Path("id") long id);
+
+    // TipoRecurso endpoints
+    @GET("/tipoRecursos")
     Call<List<TipoRecurso>> getTipoRecursos();
 
-    @POST("/tipRecursos")
+    @POST("/tipoRecursos")
     Call<TipoRecurso> addTipoRecurso(@Body TipoRecurso tipoRecurso);
 
-    //UNIDAD
-    @GET("/unidades/{unidadesId}")
+    @GET("/tipoRecursos/{id}")
+    Call<TipoRecurso> getTipoRecurso(@Path("id") long id);
+
+    @PUT("/tipoRecursos/{id}")
+    Call<TipoRecurso> modifyTipoRecurso(@Path("id") long id, @Body TipoRecurso tipoRecurso);
+
+    @DELETE("/tipoRecursos/{id}")
+    Call<Void> deleteTipoRecurso(@Path("id") long id);
+
+    // Unidad endpoints
+    @GET("/unidades")
     Call<List<Unidad>> getUnidades();
 
     @POST("/unidades")
     Call<Unidad> addUnidad(@Body Unidad unidad);
 
+    @GET("/unidades/{id}")
+    Call<Unidad> getUnidad(@Path("id") long id);
+
+    @PUT("/unidades/{id}")
+    Call<Unidad> modifyUnidad(@Path("id") long id, @Body Unidad unidad);
+
+    @DELETE("/unidades/{id}")
+    Call<Void> deleteUnidad(@Path("id") long id);
 }

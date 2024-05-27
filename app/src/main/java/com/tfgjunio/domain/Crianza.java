@@ -1,36 +1,47 @@
 package com.tfgjunio.domain;
 
-
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Crianza implements Serializable {
-
-    private Long id;
+public class Crianza {
+    private long id;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private Animal crianzaAnimal;
+    private List<Animal> crianzaAnimal;
     private List<Compra> crianzaCompra;
-    private Veterinario crianzaVeterinario;
+    private List<Baja> crianzaBaja;
 
-    public Crianza(Long id, LocalDate fechaInicio, LocalDate fechaFin, Animal crianzaAnimal, List<Compra> crianzaCompra, Veterinario crianzaVeterinario) {
+    // Constructor completo con id
+    public Crianza(long id, LocalDate fechaInicio, LocalDate fechaFin, List<Animal> crianzaAnimal, List<Compra> crianzaCompra, List<Baja> crianzaBaja) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.crianzaAnimal = crianzaAnimal;
         this.crianzaCompra = crianzaCompra;
-        this.crianzaVeterinario = crianzaVeterinario;
+        this.crianzaBaja = crianzaBaja;
+    }
+
+    // Constructor solo con fecha de inicio
+    public Crianza(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    // Constructor solo con fecha de finalización
+    public Crianza(long id, LocalDate fechaFin) {
+        this.id = id;
+        this.fechaFin = fechaFin;
     }
 
     public Crianza() {
+
     }
 
-    public Long getId() {
+    // Getters y setters
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,11 +61,11 @@ public class Crianza implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public Animal getCrianzaAnimal() {
+    public List<Animal> getCrianzaAnimal() {
         return crianzaAnimal;
     }
 
-    public void setCrianzaAnimal(Animal crianzaAnimal) {
+    public void setCrianzaAnimal(List<Animal> crianzaAnimal) {
         this.crianzaAnimal = crianzaAnimal;
     }
 
@@ -66,11 +77,11 @@ public class Crianza implements Serializable {
         this.crianzaCompra = crianzaCompra;
     }
 
-    public Veterinario getCrianzaVeterinario() {
-        return crianzaVeterinario;
+    public List<Baja> getCrianzaBaja() {
+        return crianzaBaja;
     }
 
-    public void setCrianzaVeterinario(Veterinario crianzaVeterinario) {
-        this.crianzaVeterinario = crianzaVeterinario;
+    public void setCrianzaBaja(List<Baja> crianzaBaja) {
+        this.crianzaBaja = crianzaBaja;
     }
 }

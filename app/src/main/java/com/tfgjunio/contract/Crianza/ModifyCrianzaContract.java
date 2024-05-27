@@ -3,25 +3,22 @@ package com.tfgjunio.contract.Crianza;
 import com.tfgjunio.domain.Crianza;
 
 public interface ModifyCrianzaContract {
-
-    interface Model {
-        interface OnModifyCrianzaListener {
-            void onModifySuccess(Crianza crianza);
-
-            void onModifyError(String message);
-        }
-
-        void modifyCrianza(long id, Crianza crianza, ModifyCrianzaContract.Model.OnModifyCrianzaListener listener);
-    }
-
     interface View {
-        void showError(String errorMessage);
-
+        void onCrianzaModified(Crianza crianza);
+        void showError(String message);
         void showMessage(String message);
     }
 
     interface Presenter {
         void modifyCrianza(long id, Crianza crianza);
     }
-}
 
+    interface Model {
+        interface OnCrianzaModifiedListener {
+            void onCrianzaModified(Crianza crianza);
+            void onModificationError(String error);
+        }
+
+        void modifyCrianza(long id, Crianza crianza, OnCrianzaModifiedListener listener);
+    }
+}

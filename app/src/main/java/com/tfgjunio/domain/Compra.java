@@ -1,17 +1,23 @@
 package com.tfgjunio.domain;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-public class Compra  implements Serializable {
 
-    private Long id;
+public class Compra {
+    private long id;
     private LocalDate fechaCompra;
     private String descripcion;
     private List<Recurso> compraRecurso;
     private Crianza compraCrianza;
 
-    public Compra(Long id, LocalDate fechaCompra, String descripcion, List<Recurso> compraRecurso, Crianza compraCrianza) {
+    public Compra(LocalDate fechaCompra, String descripcion, List<Recurso> compraRecurso, Crianza compraCrianza) {
+        this.fechaCompra = fechaCompra;
+        this.descripcion = descripcion;
+        this.compraRecurso = compraRecurso;
+        this.compraCrianza = compraCrianza;
+    }
+
+    public Compra(long id, LocalDate fechaCompra, String descripcion, List<Recurso> compraRecurso, Crianza compraCrianza) {
         this.id = id;
         this.fechaCompra = fechaCompra;
         this.descripcion = descripcion;
@@ -19,14 +25,11 @@ public class Compra  implements Serializable {
         this.compraCrianza = compraCrianza;
     }
 
-    public Compra() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -61,5 +64,4 @@ public class Compra  implements Serializable {
     public void setCompraCrianza(Crianza compraCrianza) {
         this.compraCrianza = compraCrianza;
     }
-
 }

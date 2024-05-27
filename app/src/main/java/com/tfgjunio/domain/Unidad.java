@@ -1,26 +1,25 @@
 package com.tfgjunio.domain;
 
-
-import java.io.Serializable;
-
-public class Unidad implements Serializable {
-
-    private Long id;
+public class Unidad {
+    private long id;
     private String nombre;
 
-    public Unidad(Long id, String nombre) {
+    // Constructor sin id
+    public Unidad(String nombre) {
+        this.nombre = nombre;
+    }
+
+    // Constructor con id
+    public Unidad(long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Unidad() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

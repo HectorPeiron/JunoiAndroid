@@ -1,35 +1,29 @@
 package com.tfgjunio.presenter.Crianza;
 
-
 import com.tfgjunio.contract.Crianza.AddCrianzaContract;
 import com.tfgjunio.domain.Crianza;
-import com.tfgjunio.model.Crianza.AddCrianzaModel;
 
-public class AddCrianzaPresenter implements AddCrianzaContract.Presenter, AddCrianzaContract.Model.OnRegisterCrianzaListener {
-    private AddCrianzaModel model;
-    private AddCrianzaView view;
+public class AddCrianzaPresenter implements AddCrianzaContract.Presenter {
+    private AddCrianzaContract.View view;
+    private AddCrianzaContract.Model model;
 
-    public AddCrianzaPresenter(AddCrianzaView view) {
-        this.model = new AddCrianzaModel();
+    public AddCrianzaPresenter(AddCrianzaContract.View view, AddCrianzaContract.Model model) {
         this.view = view;
+        this.model = model;
     }
 
     @Override
     public void addCrianza(Crianza crianza) {
-        model.addCrianza(crianza, this);
-    }
+        model.addCrianza(crianza, new AddCrianzaContract.Model.OnRegisterCrianzaListener() {
+            @Override
+            public void onRegisterSuccess(Crianza crianza) {
+                view.onCrianzaAdded(crianza);
+            }
 
-
-    @Override
-    public void onRegisterSuccess(Crianza crianza) {
-        view.showMessage("El Crianza " + crianza.getNombre() + "se ha añadido correctamente.");
-
-    }
-
-    @Override
-    public void onRegisterError(String message) {
-        view.showError("Se ha producido un error al añadir Crianza");
-
+            @Override
+            public void onRegisterError(String error) {
+                view.showError(error);
+            }
+        });
     }
 }
-

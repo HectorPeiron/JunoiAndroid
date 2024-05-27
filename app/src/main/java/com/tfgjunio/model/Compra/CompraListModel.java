@@ -1,6 +1,5 @@
 package com.tfgjunio.model.Compra;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.tfgjunio.api.JunioAPI;
@@ -16,33 +15,25 @@ import retrofit2.Response;
 
 public class CompraListModel implements CompraListContract.Model {
 
-    private Context context;
-
-    public CompraListModel(Context context) {
-        this.context = context;
-    }
-
     @Override
-    public void loadAllCompras(CompraListContract.Model.OnLoadCompraListener listener) {
-
+    public void loadAllCompras(OnLoadCompraListener listener) {
         JunioApiInterface junioApiInterface = JunioAPI.buildInstance();
         Call<List<Compra>> callCompras = junioApiInterface.getCompras();
-        Log.d("Compra", "llamada desde Compra model");
+        Log.d("compras", "llamada desde el CompraListModel");
         callCompras.enqueue(new Callback<List<Compra>>() {
             @Override
             public void onResponse(Call<List<Compra>> call, Response<List<Compra>> response) {
-                Log.d("Compra", "llamada desde el Compra model OK");
-                List<Compra>compras = response.body();
+                Log.d("Compras", "llamada desde el Compras model OK");
+                List<Compra> compras = response.body();
                 listener.onLoadComprasSuccess(compras);
             }
 
             @Override
             public void onFailure(Call<List<Compra>> call, Throwable t) {
-                Log.d("Compra", "llamada desde el Compra model KO");
+                Log.d("Compras", "llamada desde el Compras model KO");
                 t.printStackTrace();
                 String message = "Error al invocar la operación";
                 listener.onLoadComprasError(message);
-
             }
         });
     }

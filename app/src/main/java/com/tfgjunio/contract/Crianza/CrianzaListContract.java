@@ -12,17 +12,16 @@ public interface CrianzaListContract {
             void onLoadCrianzasError(String message);
         }
 
-        void loadAllCrianzas(CrianzaListContract.Model.OnLoadCrianzaListener listener);
+        void loadAllCrianzas(OnLoadCrianzaListener listener);
     }
 
     interface View {
-        void showCrianzas(List<Crianza> crianzas);
+        void showCrianza(List<Crianza> crianzas);
 
-        void showMessage(String message);
+        void showModifyMessage(String message);
     }
 
     interface Presenter {
-        void loadAllCrianzas();
+        void loadAllCrianza();
     }
-
 }

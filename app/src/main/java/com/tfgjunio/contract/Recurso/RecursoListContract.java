@@ -1,13 +1,10 @@
 package com.tfgjunio.contract.Recurso;
 
-import com.tfgjunio.contract.Crianza.CrianzaListContract;
-import com.tfgjunio.domain.Crianza;
 import com.tfgjunio.domain.Recurso;
 
 import java.util.List;
 
 public interface RecursoListContract {
-
     interface Model {
         interface OnLoadRecursoListener {
             void onLoadRecursosSuccess(List<Recurso> recursos);
@@ -15,7 +12,7 @@ public interface RecursoListContract {
             void onLoadRecursosError(String message);
         }
 
-        void loadAllRecursos(RecursoListContract.Model.OnLoadRecursoListener listener);
+        void loadAllRecursos(OnLoadRecursoListener listener);
     }
 
     interface View {
@@ -27,5 +24,4 @@ public interface RecursoListContract {
     interface Presenter {
         void loadAllRecursos();
     }
-
 }

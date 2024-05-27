@@ -1,40 +1,46 @@
 package com.tfgjunio.domain;
 
-
-import java.io.Serializable;
-
-public class Recurso implements Serializable {
-
-    private Long id;
+public class Recurso {
+    private long id;
     private String nombre;
     private float cantidad;
     private float precio;
     private String proveedor;
     private String descripcion;
-    private TipoRecurso recursoTipoRecurso;
+    private TipoRecurso tipoRecurso;
     private TipoAnimal recursoTipoAnimal;
     private Unidad recursoUnidad;
 
-    public Recurso(Long id, String nombre, float cantidad, float precio, String proveedor, String descripcion, TipoRecurso recursoTipoRecurso, TipoAnimal recursoTipoAnimal, Unidad recursoUnidad) {
+    // Constructor sin id
+    public Recurso(String nombre, float cantidad, float precio, String proveedor, String descripcion, TipoRecurso tipoRecurso, TipoAnimal recursoTipoAnimal, Unidad recursoUnidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.proveedor = proveedor;
+        this.descripcion = descripcion;
+        this.tipoRecurso = tipoRecurso;
+        this.recursoTipoAnimal = recursoTipoAnimal;
+        this.recursoUnidad = recursoUnidad;
+    }
+
+    // Constructor con id
+    public Recurso(long id, String nombre, float cantidad, float precio, String proveedor, String descripcion, TipoRecurso tipoRecurso, TipoAnimal recursoTipoAnimal, Unidad recursoUnidad) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
         this.proveedor = proveedor;
         this.descripcion = descripcion;
-        this.recursoTipoRecurso = recursoTipoRecurso;
+        this.tipoRecurso = tipoRecurso;
         this.recursoTipoAnimal = recursoTipoAnimal;
         this.recursoUnidad = recursoUnidad;
     }
 
-    public Recurso() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -78,12 +84,12 @@ public class Recurso implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public TipoRecurso getRecursoTipoRecurso() {
-        return recursoTipoRecurso;
+    public TipoRecurso getTipoRecurso() {
+        return tipoRecurso;
     }
 
-    public void setRecursoTipoRecurso(TipoRecurso recursoTipoRecurso) {
-        this.recursoTipoRecurso = recursoTipoRecurso;
+    public void setTipoRecurso(TipoRecurso tipoRecurso) {
+        this.tipoRecurso = tipoRecurso;
     }
 
     public TipoAnimal getRecursoTipoAnimal() {
