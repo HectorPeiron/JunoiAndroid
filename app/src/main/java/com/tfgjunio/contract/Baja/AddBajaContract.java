@@ -1,28 +1,35 @@
 package com.tfgjunio.contract.Baja;
 
 import com.tfgjunio.domain.Baja;
+import com.tfgjunio.domain.TipoBaja;
+
+import java.util.List;
 
 public interface AddBajaContract {
-
-    interface Model {
-        interface OnRegisterBajaListener {
-            void onRegisterSuccess(Baja baja);
-
-            void onRegisterError(String message);
-        }
-
-        void addBaja(Baja baja, OnRegisterBajaListener listener);
-    }
-
     interface View {
-        void showError(String errorMessage);
-
+        void showTipoBajas(List<TipoBaja> tipoBajas);
+        void showError(String message);
         void showMessage(String message);
-
-        void resetForm();
+        void onBajaAdded();
     }
 
     interface Presenter {
+        void loadTipoBajas();
         void addBaja(Baja baja);
+    }
+
+    interface Model {
+        interface OnTipoBajasLoadedListener {
+            void onTipoBajasLoaded(List<TipoBaja> tipoBajas);
+            void onLoadError(String message);
+        }
+
+        interface OnBajaAddedListener {
+            void onBajaAdded();
+            void onAddError(String message);
+        }
+
+        void loadTipoBajas(OnTipoBajasLoadedListener listener);
+        void addBaja(Baja baja, OnBajaAddedListener listener);
     }
 }

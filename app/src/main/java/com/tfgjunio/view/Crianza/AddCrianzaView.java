@@ -18,6 +18,8 @@ import com.tfgjunio.presenter.Crianza.AddCrianzaPresenter;
 import com.tfgjunio.presenter.Crianza.ModifyCrianzaPresenter;
 import com.tfgjunio.utils.PreferencesHelper;
 import com.tfgjunio.view.Animal.AddAnimalView;
+import com.tfgjunio.view.Baja.AddBajaView;
+import com.tfgjunio.view.Compra.AddCompraView;
 
 import java.time.LocalDate;
 
@@ -82,6 +84,14 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         });
         btnCrianzaAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(AddCrianzaView.this, AddAnimalView.class);
+            startActivity(intent);
+        });
+        btnCrianzaCompra.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCrianzaView.this, AddCompraView.class);
+            startActivity(intent);
+        });
+        btnCrianzaBajas.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCrianzaView.this, AddBajaView.class);
             startActivity(intent);
         });
 

@@ -36,6 +36,9 @@ public class Crianza {
 
     }
 
+    public Crianza(long crianzaId) {
+    }
+
     // Getters y setters
     public long getId() {
         return id;

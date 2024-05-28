@@ -25,6 +25,10 @@ public class Compra {
         this.compraCrianza = compraCrianza;
     }
 
+    public Compra() {
+
+    }
+
     public long getId() {
         return id;
     }

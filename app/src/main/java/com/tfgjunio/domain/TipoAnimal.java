@@ -33,7 +33,7 @@ public class TipoAnimal {
 
     @Override
     public String toString() {
-        return nombre; // Esto asegurará que el nombre se muestre en el spinner
+        return nombre;
     }
 
 }

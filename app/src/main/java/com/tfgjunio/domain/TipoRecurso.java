@@ -9,11 +9,18 @@ public class TipoRecurso {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
     // Constructor con id
     public TipoRecurso(long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
+
+
 
     public long getId() {
         return id;

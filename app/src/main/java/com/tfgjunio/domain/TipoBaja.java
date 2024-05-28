@@ -4,6 +4,11 @@ public class TipoBaja {
     private long id;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return nombre; // Esto asegurará que el nombre se muestre en el spinner
+    }
+
     // Constructor sin id
     public TipoBaja(String nombre) {
         this.nombre = nombre;
