@@ -15,20 +15,6 @@ public class AddCompraPresenter implements AddCompraContract.Presenter {
         this.model = model;
     }
 
-    @Override
-    public void addCompra(Compra compra) {
-        model.addCompra(compra, new AddCompraContract.Model.OnCompraAddedListener() {
-            @Override
-            public void onCompraAdded() {
-                view.onCompraAdded();
-            }
-
-            @Override
-            public void onAddError(String message) {
-                view.showError(message);
-            }
-        });
-    }
 
     @Override
     public void loadRecursos() {
@@ -44,4 +30,21 @@ public class AddCompraPresenter implements AddCompraContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void addCompra(Compra compra) {
+        model.addCompra(compra, new AddCompraContract.Model.OnCompraAddedListener() {
+            @Override
+            public void onCompraAdded() {
+                view.onCompraAdded();
+            }
+
+            @Override
+            public void onAddError(String message) {
+                view.showError(message);
+            }
+        });
+    }
+
+
 }

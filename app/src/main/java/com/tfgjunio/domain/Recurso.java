@@ -107,4 +107,11 @@ public class Recurso {
     public void setRecursoUnidad(Unidad recursoUnidad) {
         this.recursoUnidad = recursoUnidad;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+
 }

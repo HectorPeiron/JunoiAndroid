@@ -1,6 +1,7 @@
 package com.tfgjunio.view.Baja;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,8 @@ import com.tfgjunio.domain.TipoBaja;
 import com.tfgjunio.model.Baja.AddBajaModel;
 import com.tfgjunio.presenter.Baja.AddBajaPresenter;
 import com.tfgjunio.utils.PreferencesHelper;
+import com.tfgjunio.view.Animal.AddAnimalView;
+import com.tfgjunio.view.Crianza.AddCrianzaView;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -30,6 +33,7 @@ public class AddBajaView extends AppCompatActivity implements AddBajaContract.Vi
     private EditText etFechaBaja, etCantidad;
     private Spinner spinnerTipoBaja;
     private Button btnGuardarBaja;
+    private Button btnVerGraficas;
     private AddBajaPresenter presenter;
     private PreferencesHelper preferencesHelper;
 
@@ -50,7 +54,7 @@ public class AddBajaView extends AppCompatActivity implements AddBajaContract.Vi
         etCantidad = findViewById(R.id.etCantidad);
         spinnerTipoBaja = findViewById(R.id.spinnerTipoBaja);
         btnGuardarBaja = findViewById(R.id.btnGuardarBaja);
-
+        btnVerGraficas = findViewById(R.id.btnVerGraficas);
         etFechaBaja.setText(LocalDate.now().toString());
         etFechaBaja.setOnClickListener(v -> showDatePicker());
 
@@ -68,6 +72,11 @@ public class AddBajaView extends AppCompatActivity implements AddBajaContract.Vi
             } else {
                 Toast.makeText(this, "No hay crianza activa", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        btnVerGraficas.setOnClickListener(v -> {
+            Intent intent = new Intent(AddBajaView.this, GraficosView.class);
+            startActivity(intent);
         });
     }
 

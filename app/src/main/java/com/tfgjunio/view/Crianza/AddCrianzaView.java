@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,12 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
     private Button btnCrianzaBajas;
     private Button btnCrianzasAnteriores;
     private Button btnSoporte;
+
+    private Button btnVerCrianza;
     private Button btnFinalizarCrianza;
+
+    private ImageView imgBackground;
+    private ImageView principal;
 
     private AddCrianzaPresenter addCrianzaPresenter;
     private ModifyCrianzaPresenter modifyCrianzaPresenter;
@@ -47,6 +53,7 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         modifyCrianzaPresenter = new ModifyCrianzaPresenter(this, new ModifyCrianzaModel());
 
         setupButtons();
+        checkActiveCrianza();
     }
 
     private void setupButtons() {
@@ -57,14 +64,15 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnCrianzasAnteriores = findViewById(R.id.btnCrianzasAnteriores);
         btnSoporte = findViewById(R.id.btnSoporte);
         btnFinalizarCrianza = findViewById(R.id.btnFinalizarCrianza);
+        btnVerCrianza = findViewById(R.id.btnVerCrianza);
+        imgBackground = findViewById(R.id.imgBackground);
+        principal = findViewById(R.id.principal);
 
         btnGuardarCrianza.setOnClickListener(v -> {
             LocalDate fechaInicio = LocalDate.now();
             Crianza crianza = new Crianza(fechaInicio);
             addCrianzaPresenter.addCrianza(crianza);
         });
-
-
 
         btnFinalizarCrianza.setOnClickListener(v -> {
             long crianzaId = preferencesHelper.getCrianzaId();
@@ -82,23 +90,37 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
                 Toast.makeText(AddCrianzaView.this, "No hay crianza activa para finalizar", Toast.LENGTH_SHORT).show();
             }
         });
+
         btnCrianzaAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(AddCrianzaView.this, AddAnimalView.class);
             startActivity(intent);
         });
+
         btnCrianzaCompra.setOnClickListener(v -> {
             Intent intent = new Intent(AddCrianzaView.this, AddCompraView.class);
             startActivity(intent);
         });
+
         btnCrianzaBajas.setOnClickListener(v -> {
             Intent intent = new Intent(AddCrianzaView.this, AddBajaView.class);
             startActivity(intent);
         });
 
+        btnVerCrianza.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCrianzaView.this, CrianzaDetailView.class);
+            startActivity(intent);
+        });
 
+        btnCrianzasAnteriores.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCrianzaView.this, CrianzaTodasListView.class);
+            startActivity(intent);
+        });
     }
 
-
+    private void checkActiveCrianza() {
+        long crianzaId = preferencesHelper.getCrianzaId();
+        showManagementButtons(crianzaId != -1);
+    }
 
     @Override
     public void showError(String errorMessage) {
@@ -133,7 +155,11 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnCrianzaBajas.setVisibility(visibility);
         btnCrianzasAnteriores.setVisibility(visibility);
         btnSoporte.setVisibility(visibility);
+        btnVerCrianza.setVisibility(visibility);
         btnFinalizarCrianza.setVisibility(visibility);
+        principal.setVisibility(visibility);
+
+        imgBackground.setVisibility(visible ? View.GONE : View.VISIBLE);
         btnGuardarCrianza.setVisibility(visible ? View.GONE : View.VISIBLE);
     }
 }

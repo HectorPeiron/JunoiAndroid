@@ -7,16 +7,6 @@
     android:padding="16dp"
     tools:context=".view.Crianza.AddCrianzaView">
 
-    <TextView
-        android:id="@+id/tvCrianzaTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crianza Management"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp" />
-
     <Button
         android:id="@+id/btnCrianzaAnimal"
         android:layout_width="match_parent"
@@ -45,8 +35,16 @@
         android:id="@+id/btnCrianzasAnteriores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Anteriores crianzas"
+        android:text="Crianzas Anteriores"
         android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnVerCrianza"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Ver Crianza"
         android:visibility="gone" />
 
     <Button
@@ -58,11 +56,29 @@
         android:visibility="gone" />
 
     <RelativeLayout
+        android:id="@+id/layoutContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_gravity="bottom">
 
+        <!-- Ajustamos el orden de las imágenes -->
+        <ImageView
+            android:id="@+id/principal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fondo_main"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imgBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/act_main" />
+
+        <!-- Botones en la parte superior de las imágenes -->
         <Button
             android:id="@+id/btnGuardarCrianza"
             android:layout_width="wrap_content"
@@ -83,5 +99,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone" />
+
     </RelativeLayout>
 </LinearLayout>

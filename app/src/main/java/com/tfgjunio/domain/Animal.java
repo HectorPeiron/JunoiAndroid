@@ -31,6 +31,16 @@ public class Animal {
         this.animalCrianza = animalCrianza;
     }
 
+    public Animal(LocalDate fechaLlegada, int numero, String sexo, BigDecimal peso, TipoAnimal animalTipoAnimal) {
+        this.fechaLlegada = fechaLlegada;
+        this.numero = numero;
+        this.sexo = sexo;
+        this.peso = peso;
+        this.animalTipoAnimal = animalTipoAnimal;
+    }
+
+
+
     public long getId() {
         return id;
     }

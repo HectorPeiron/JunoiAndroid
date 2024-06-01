@@ -1,5 +1,6 @@
 package com.tfgjunio.view.Animal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -30,7 +31,7 @@ public class AddAnimalView extends AppCompatActivity implements AddAnimalContrac
     private EditText etPeso;
     private Spinner spinnerTipoAnimal;
     private Button btnGuardarAnimal;
-
+    private Button btnVerAnimales;
     private AddAnimalPresenter presenter;
     private PreferencesHelper preferencesHelper;
 
@@ -52,6 +53,14 @@ public class AddAnimalView extends AppCompatActivity implements AddAnimalContrac
         etPeso = findViewById(R.id.etPeso);
         spinnerTipoAnimal = findViewById(R.id.spinnerTipoAnimal);
         btnGuardarAnimal = findViewById(R.id.btnGuardarAnimal);
+        btnVerAnimales = findViewById(R.id.btnVerAnimales);
+
+
+        btnVerAnimales.setOnClickListener(v -> {
+            Intent intent = new Intent(AddAnimalView.this, AnimalListView.class);
+            startActivity(intent);
+        });
+
 
         btnGuardarAnimal.setOnClickListener(v -> {
             long crianzaId = preferencesHelper.getCrianzaId();

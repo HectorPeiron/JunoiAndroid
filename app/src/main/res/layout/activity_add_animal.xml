@@ -39,4 +39,12 @@
         android:layout_height="wrap_content"
         android:text="Guardar Animal"
         android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnVerAnimales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver animales crianza"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

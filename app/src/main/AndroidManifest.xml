@@ -39,7 +39,25 @@
         android:name=".view.Baja.AddBajaView"
         android:exported="true">
     </activity>
-
-
+        <activity
+            android:name=".view.Baja.GraficosView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".view.Animal.AnimalListView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".view.Compra.CompraListView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".view.Crianza.CrianzaDetailView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".view.Crianza.CrianzaTodasListView"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>

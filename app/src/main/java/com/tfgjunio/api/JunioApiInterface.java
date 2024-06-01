@@ -121,4 +121,16 @@ public interface JunioApiInterface {
 
     @DELETE("/unidades/{id}")
     Call<Void> deleteUnidad(@Path("id") long id);
+
+    @GET("/animales/crianza/{crianzaId}")
+    Call<List<Animal>> getAnimalesByCrianzaId(@Path("crianzaId") long crianzaId);
+
+    @GET("/bajas/crianza/{crianzaId}")
+    Call<List<Baja>> getBajasByCrianzaId(@Path("crianzaId") long crianzaId);
+
+    @GET("/compras/crianza/{crianzaId}")
+    Call<List<Compra>> getComprasByCrianzaId(@Path("crianzaId") long crianzaId);
+
+    @GET("/crianzas/{id}")
+    Call<Crianza> getCrianzaId(@Path("id") long id);
 }
