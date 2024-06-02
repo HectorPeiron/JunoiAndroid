@@ -21,6 +21,7 @@ import com.tfgjunio.utils.PreferencesHelper;
 import com.tfgjunio.view.Animal.AddAnimalView;
 import com.tfgjunio.view.Baja.AddBajaView;
 import com.tfgjunio.view.Compra.AddCompraView;
+import com.tfgjunio.view.CorreoView;
 
 import java.time.LocalDate;
 
@@ -67,7 +68,6 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnVerCrianza = findViewById(R.id.btnVerCrianza);
         imgBackground = findViewById(R.id.imgBackground);
         principal = findViewById(R.id.principal);
-
         btnGuardarCrianza.setOnClickListener(v -> {
             LocalDate fechaInicio = LocalDate.now();
             Crianza crianza = new Crianza(fechaInicio);
@@ -115,11 +115,24 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
             Intent intent = new Intent(AddCrianzaView.this, CrianzaTodasListView.class);
             startActivity(intent);
         });
+
+        btnSoporte.setOnClickListener(v -> {
+            Intent intent = new Intent(AddCrianzaView.this, CorreoView.class);
+            startActivity(intent);
+        });
     }
 
     private void checkActiveCrianza() {
         long crianzaId = preferencesHelper.getCrianzaId();
-        showManagementButtons(crianzaId != -1);
+        if (crianzaId != -1) {
+            imgBackground.setVisibility(View.GONE);
+            principal.setVisibility(View.VISIBLE);
+            showManagementButtons(true);
+        } else {
+            imgBackground.setVisibility(View.VISIBLE);
+            principal.setVisibility(View.GONE);
+            showManagementButtons(false);
+        }
     }
 
     @Override
@@ -136,6 +149,8 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
     public void onCrianzaAdded(Crianza crianza) {
         preferencesHelper.saveCrianzaId(crianza.getId());
         preferencesHelper.saveCrianzaFechaInicio(crianza.getFechaInicio().toString());
+        imgBackground.setVisibility(View.GONE);
+        principal.setVisibility(View.VISIBLE);
         showManagementButtons(true);
         Toast.makeText(this, "Crianza creada correctamente", Toast.LENGTH_SHORT).show();
     }
@@ -144,6 +159,8 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
     public void onCrianzaModified(Crianza crianza) {
         preferencesHelper.clearCrianzaId();
         preferencesHelper.clearCrianzaFechaInicio();
+        imgBackground.setVisibility(View.VISIBLE);
+        principal.setVisibility(View.GONE);
         showManagementButtons(false);
         Toast.makeText(this, "Crianza finalizada correctamente", Toast.LENGTH_SHORT).show();
     }
@@ -157,9 +174,6 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnSoporte.setVisibility(visibility);
         btnVerCrianza.setVisibility(visibility);
         btnFinalizarCrianza.setVisibility(visibility);
-        principal.setVisibility(visibility);
-
-        imgBackground.setVisibility(visible ? View.GONE : View.VISIBLE);
         btnGuardarCrianza.setVisibility(visible ? View.GONE : View.VISIBLE);
     }
 }

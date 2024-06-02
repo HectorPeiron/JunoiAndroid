@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -57,6 +58,10 @@
         </activity>
         <activity
             android:name=".view.Crianza.CrianzaTodasListView"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".view.CorreoView"
             android:exported="true">
         </activity>
     </application>

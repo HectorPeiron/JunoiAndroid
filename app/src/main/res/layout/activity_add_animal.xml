@@ -1,50 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".view.Animal.AddAnimalView">
 
-    <EditText
-        android:id="@+id/etNumero"
-        android:layout_width="match_parent"
+    <!-- Imagen de fondo -->
+    <ImageView
+        android:id="@+id/animales_img"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Número"
-        android:inputType="number" />
+        android:scaleType="centerCrop"
+        android:paddingBottom="200px"
 
-    <EditText
-        android:id="@+id/etSexo"
+        android:src="@drawable/animales_img" />
+
+    <!-- Contenido principal encima de la imagen de fondo -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Sexo" />
+        android:layout_height="669dp"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etPeso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Peso"
-        android:inputType="numberDecimal" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinnerTipoAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/etNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Número"
+                android:inputType="number" />
 
-    <Button
-        android:id="@+id/btnGuardarAnimal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar Animal"
-        android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/etSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sexo" />
 
-    <Button
-        android:id="@+id/btnVerAnimales"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver animales crianza"
-        android:layout_marginTop="16dp" />
+            <EditText
+                android:id="@+id/etPeso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Peso"
+                android:inputType="numberDecimal" />
 
-</LinearLayout>
+            <Spinner
+                android:id="@+id/spinnerTipoAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/btnGuardarAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Guardar Animal" />
+
+            <Button
+                android:id="@+id/btnVerAnimales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ver animales crianza" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

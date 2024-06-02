@@ -29,6 +29,8 @@ public class AddAnimalView extends AppCompatActivity implements AddAnimalContrac
     private EditText etNumero;
     private EditText etSexo;
     private EditText etPeso;
+
+
     private Spinner spinnerTipoAnimal;
     private Button btnGuardarAnimal;
     private Button btnVerAnimales;

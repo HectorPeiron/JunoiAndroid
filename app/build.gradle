@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -30,13 +31,18 @@ android {
     buildFeatures {
         viewBinding true
     }
-}
 
+    packagingOptions {
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.md'  // Excluyendo el archivo duplicado
+    }
+}
 
 dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-
-
 
     implementation libs.appcompat
     implementation libs.material
@@ -44,12 +50,10 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
 
-
     implementation "androidx.room:room-runtime:2.4.3"
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     annotationProcessor "androidx.room:room-compiler:2.4.3"
-
 
     compileOnly "org.projectlombok:lombok:1.18.24"
     annotationProcessor "org.projectlombok:lombok:1.18.24"
@@ -57,22 +61,16 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-
-
-    //   RETROFIT
+    // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
-
-
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     annotationProcessor 'androidx.room:room-compiler:2.5.0'
 
-
-
-
-
-
+    // Envío de correos
+    implementation 'com.sun.mail:android-mail:1.6.7'
+    implementation 'com.sun.mail:android-activation:1.6.7'
 }
