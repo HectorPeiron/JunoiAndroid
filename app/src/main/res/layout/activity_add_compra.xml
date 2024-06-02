@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +10,7 @@
         android:id="@+id/etDescripcionCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción de la compra" />
+        android:hint="@string/descripcion_compra_hint" />
 
     <Spinner
         android:id="@+id/spinnerRecurso"
@@ -23,21 +22,21 @@
         android:id="@+id/btnAgregarRecurso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar otro recurso"
+        android:text="@string/agregar_recurso_button"
         android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnGuardarCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar Compra"
+        android:text="@string/guardar_compra_button"
         android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/btnVerCompras"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver compras crianza"
+        android:text="@string/ver_compras_button"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>

@@ -1,3 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TfgJunio</string>
+    <string name="app_name">TuApp</string>
+    <string name="numero_hint">Número</string>
+    <string name="sexo_hint">Sexo</string>
+    <string name="peso_hint">Peso</string>
+    <string name="guardar_animal_button">Guardar Animal</string>
+    <string name="ver_animales_button">Ver animales crianza</string>
+    <string name="fecha_baja_hint">Fecha de Baja</string>
+    <string name="fecha_baja_end_icon_description">Selecciona la fecha</string>
+    <string name="cantidad_hint">Cantidad</string>
+    <string name="guardar_baja_button">Guardar Baja</string>
+    <string name="ver_graficas_button">Ver gráficas</string>
+    <string name="descripcion_compra_hint">Descripción de la compra</string>
+    <string name="agregar_recurso_button">Agregar otro recurso</string>
+    <string name="guardar_compra_button">Guardar Compra</string>
+    <string name="ver_compras_button">Ver compras crianza</string>
+    <string name="email_to">pruebashrpr@gmail.com</string>
+    <string name="subject_hint">Subject</string>
+    <string name="message_hint">Message</string>
+    <string name="send_email_button">Send Email</string>
+    <string name="detalle_crianza_title">Detalle de la Crianza</string>
+    <string name="fecha_inicio">Fecha de inicio</string>
+    <string name="fecha_fin">Fecha de fin</string>
+    <string name="animales_section_title">Animales</string>
+    <string name="compras_section_title">Compras</string>
+    <string name="bajas_section_title">Bajas</string>
+    <string name="crianza_animal_button">Crianza Animal</string>
+    <string name="crianza_compra_button">Crianza Compra</string>
+    <string name="crianza_bajas_button">Crianza Bajas</string>
+    <string name="crianzas_anteriores_button">Crianzas Anteriores</string>
+    <string name="ver_crianza_button">Ver Crianza</string>
+    <string name="soporte_button">Soporte</string>
+    <string name="iniciar_crianza_button">Iniciar Crianza</string>
+    <string name="finalizar_crianza_button">Finalizar Crianza</string>
+    <string name="baja_fecha">Fecha</string>
+    <string name="baja_cantidad">Cantidad</string>
+    <string name="baja_tipo">Tipo de Baja</string>
+    <string name="compra_fecha">Fecha de Compra</string>
+    <string name="compra_descripcion">Descripción</string>
+    <string name="compra_recurso">Recurso</string>
+    <string name="crianza_fecha_inicio">Fecha de inicio</string>
+    <string name="crianza_fecha_fin">Fecha de fin</string>
+    <string name="crianza_fechas">Crianza Fechas</string>
+    <string name="animales">Animales:</string>
+    <string name="compras">Compras:</string>
+    <string name="bajas">Bajas:</string>
+
+
 </resources>

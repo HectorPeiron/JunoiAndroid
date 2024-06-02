@@ -14,18 +14,18 @@
             android:id="@+id/bajaFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha" />
+            android:text="@string/baja_fecha" />
 
         <TextView
             android:id="@+id/bajaCantidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cantidad" />
+            android:text="@string/baja_cantidad" />
 
         <TextView
             android:id="@+id/bajaTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de Baja" />
+            android:text="@string/baja_tipo" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

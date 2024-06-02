@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:paddingBottom="200px"
-
         android:src="@drawable/animales_img" />
 
     <!-- Contenido principal encima de la imagen de fondo -->
@@ -30,20 +29,20 @@
                 android:id="@+id/etNumero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Número"
+                android:hint="@string/numero_hint"
                 android:inputType="number" />
 
             <EditText
                 android:id="@+id/etSexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Sexo" />
+                android:hint="@string/sexo_hint" />
 
             <EditText
                 android:id="@+id/etPeso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Peso"
+                android:hint="@string/peso_hint"
                 android:inputType="numberDecimal" />
 
             <Spinner
@@ -57,14 +56,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Guardar Animal" />
+                android:text="@string/guardar_animal_button" />
 
             <Button
                 android:id="@+id/btnVerAnimales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Ver animales crianza" />
+                android:text="@string/ver_animales_button" />
 
         </LinearLayout>
     </ScrollView>

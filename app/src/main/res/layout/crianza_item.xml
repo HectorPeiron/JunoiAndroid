@@ -14,12 +14,12 @@
             android:id="@+id/crianzaFechaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de inicio" />
+            android:text="@string/crianza_fecha_inicio" />
 
         <TextView
             android:id="@+id/crianzaFechaFin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de fin" />
+            android:text="@string/crianza_fecha_fin" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

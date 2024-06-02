@@ -12,11 +12,11 @@
         android:id="@+id/tilFechaBaja"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Fecha de Baja"
+        android:hint="@string/fecha_baja_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         app:endIconDrawable="@drawable/ic_calendar"
         app:endIconMode="custom"
-        app:endIconContentDescription="Selecciona la fecha">
+        app:endIconContentDescription="@string/fecha_baja_end_icon_description">
 
         <EditText
             android:id="@+id/etFechaBaja"
@@ -32,7 +32,7 @@
         android:id="@+id/etCantidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cantidad"
+        android:hint="@string/cantidad_hint"
         android:inputType="number" />
 
     <Spinner
@@ -46,12 +46,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Guardar Baja" />
+        android:text="@string/guardar_baja_button" />
 
     <Button
         android:id="@+id/btnVerGraficas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver graficas"
+        android:text="@string/ver_graficas_button"
         android:layout_marginTop="16dp" />
 </LinearLayout>

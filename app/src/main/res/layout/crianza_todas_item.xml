@@ -10,7 +10,7 @@
         android:id="@+id/tvCrianzaFechas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crianza Fechas"
+        android:text="@string/crianza_fechas"
         android:textStyle="bold"
         android:textSize="16sp"
         android:paddingBottom="8dp" />
@@ -26,9 +26,10 @@
             android:id="@+id/tvAnimales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Animales:"
+            android:text="@string/animales"
             android:textStyle="bold"
             android:paddingTop="8dp" />
+
         <LinearLayout
             android:id="@+id/layoutAnimales"
             android:layout_width="match_parent"
@@ -40,9 +41,10 @@
             android:id="@+id/tvCompras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compras:"
+            android:text="@string/compras"
             android:textStyle="bold"
             android:paddingTop="8dp" />
+
         <LinearLayout
             android:id="@+id/layoutCompras"
             android:layout_width="match_parent"
@@ -54,9 +56,10 @@
             android:id="@+id/tvBajas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bajas:"
+            android:text="@string/bajas"
             android:textStyle="bold"
             android:paddingTop="8dp" />
+
         <LinearLayout
             android:id="@+id/layoutBajas"
             android:layout_width="wrap_content"

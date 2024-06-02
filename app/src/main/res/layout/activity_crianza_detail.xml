@@ -13,7 +13,7 @@
             android:id="@+id/crianzaDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detalle de la Crianza"
+            android:text="@string/detalle_crianza_title"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp"/>
@@ -22,14 +22,14 @@
             android:id="@+id/crianzaFechaInicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de inicio"
+            android:text="@string/fecha_inicio"
             android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/crianzaFechaFin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de fin"
+            android:text="@string/fecha_fin"
             android:layout_marginBottom="16dp"/>
 
         <!-- Animals Section -->
@@ -37,7 +37,7 @@
             android:id="@+id/animalSectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Animales"
+            android:text="@string/animales_section_title"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
@@ -53,7 +53,7 @@
             android:id="@+id/compraSectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compras"
+            android:text="@string/compras_section_title"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
@@ -69,7 +69,7 @@
             android:id="@+id/bajaSectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bajas"
+            android:text="@string/bajas_section_title"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>

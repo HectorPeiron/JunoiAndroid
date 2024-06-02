@@ -16,6 +16,7 @@
             android:id="@+id/compraFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/compra_fecha"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -23,12 +24,14 @@
             android:id="@+id/compraDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/compra_descripcion"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/compraRecurso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/compra_recurso"
             android:textSize="14sp" />
 
     </LinearLayout>
