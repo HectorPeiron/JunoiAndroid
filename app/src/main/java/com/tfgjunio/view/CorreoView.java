@@ -1,5 +1,6 @@
 package com.tfgjunio.view;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -19,8 +20,9 @@ public class CorreoView extends AppCompatActivity {
 
     private TextView tvToEmail;
     private EditText etSubject, etMessage;
-    private Button btnSend;
+    private Button btnSend, btnVolver;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,13 @@ public class CorreoView extends AppCompatActivity {
         etSubject = findViewById(R.id.etSubject);
         etMessage = findViewById(R.id.etMessage);
         btnSend = findViewById(R.id.btnSend);
+        btnVolver = findViewById(R.id.btnVolver);
 
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +97,6 @@ public class CorreoView extends AppCompatActivity {
     private void goToMainMenu() {
         Intent intent = new Intent(CorreoView.this, AddCrianzaView.class);
         startActivity(intent);
-        finish(); // Optionally finish the current activity if you don't want the user to return to it
+        finish();
     }
 }

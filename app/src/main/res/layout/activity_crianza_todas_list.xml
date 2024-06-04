@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:background="@drawable/img_volver" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCrianzas"

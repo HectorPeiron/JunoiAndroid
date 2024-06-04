@@ -33,6 +33,8 @@ public class AddBajaView extends AppCompatActivity implements AddBajaContract.Vi
     private EditText etFechaBaja, etCantidad;
     private Spinner spinnerTipoBaja;
     private Button btnGuardarBaja;
+
+    private Button btnVolver;
     private Button btnVerGraficas;
     private AddBajaPresenter presenter;
     private PreferencesHelper preferencesHelper;
@@ -57,7 +59,12 @@ public class AddBajaView extends AppCompatActivity implements AddBajaContract.Vi
         btnVerGraficas = findViewById(R.id.btnVerGraficas);
         etFechaBaja.setText(LocalDate.now().toString());
         etFechaBaja.setOnClickListener(v -> showDatePicker());
+        btnVolver = findViewById(R.id.btnVolver);
 
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
         btnGuardarBaja.setOnClickListener(v -> {
             long crianzaId = preferencesHelper.getCrianzaId();
             if (crianzaId != -1) {

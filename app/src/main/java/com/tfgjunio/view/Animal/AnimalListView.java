@@ -4,6 +4,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.tfgjunio.R;
@@ -21,6 +23,8 @@ import retrofit2.Response;
 public class AnimalListView extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AnimalAdapter animalAdapter;
+
+    private Button btnVolver;
     private PreferencesHelper preferencesHelper;
 
     @Override
@@ -31,6 +35,13 @@ public class AnimalListView extends AppCompatActivity {
         preferencesHelper = new PreferencesHelper(this);
         recyclerView = findViewById(R.id.animalRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        btnVolver = findViewById(R.id.btnVolver);
+
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
 
         loadAnimals();
     }

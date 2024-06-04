@@ -5,9 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".view.Baja.AddBajaView">
-
-    <!-- TextInputLayout para manejar mejor la entrada de texto y estilos -->
+    tools:context=".view.Baja.AddBajaView"
+    android:background="@drawable/wallpaper">
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:background="@drawable/img_volver" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFechaBaja"
         android:layout_width="match_parent"

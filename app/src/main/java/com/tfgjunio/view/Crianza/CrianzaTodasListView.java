@@ -1,8 +1,10 @@
 package com.tfgjunio.view.Crianza;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +22,9 @@ import retrofit2.Response;
 public class CrianzaTodasListView extends AppCompatActivity {
 
     private RecyclerView recyclerViewCrianzas;
+    private Button btnVolver;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +32,16 @@ public class CrianzaTodasListView extends AppCompatActivity {
 
         recyclerViewCrianzas = findViewById(R.id.recyclerViewCrianzas);
         recyclerViewCrianzas.setLayoutManager(new LinearLayoutManager(this));
+        btnVolver = findViewById(R.id.btnVolver);
 
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
         loadCrianzas();
 
 
-        // Obtener las dimensiones de la pantalla
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
@@ -57,7 +66,6 @@ public class CrianzaTodasListView extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Crianza>> call, Throwable t) {
-                // Manejar error
             }
         });
     }

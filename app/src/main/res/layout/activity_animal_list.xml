@@ -3,8 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
-
+    android:padding="16dp"
+    android:background="@drawable/wallpaper">
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:background="@drawable/img_volver" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/animalRecyclerView"
         android:layout_width="match_parent"

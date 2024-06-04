@@ -1,18 +1,22 @@
 package com.tfgjunio.view.Baja;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.tfgjunio.R;
 import com.tfgjunio.api.JunioApiInterface;
@@ -20,10 +24,14 @@ import com.tfgjunio.api.JunioAPI;
 import com.tfgjunio.domain.Baja;
 import com.tfgjunio.utils.PreferencesHelper;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -34,8 +42,10 @@ public class GraficosView extends AppCompatActivity {
 
     private BarChart barChart;
     private PieChart pieChart;
+    private Button btnVolver;
     private PreferencesHelper preferencesHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +54,12 @@ public class GraficosView extends AppCompatActivity {
         preferencesHelper = new PreferencesHelper(this);
         barChart = findViewById(R.id.barChart);
         pieChart = findViewById(R.id.pieChart);
+        btnVolver = findViewById(R.id.btnVolver);
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
 
         loadBajaData();
     }
@@ -82,8 +98,6 @@ public class GraficosView extends AppCompatActivity {
         }
     }
 
-
-
     private List<Baja> filterBajasByCrianza(List<Baja> bajas, long crianzaId) {
         List<Baja> filteredBajas = new ArrayList<>();
         for (Baja baja : bajas) {
@@ -94,25 +108,54 @@ public class GraficosView extends AppCompatActivity {
         return filteredBajas;
     }
 
+    private class DateValueFormatter extends ValueFormatter {
+        private final SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM", Locale.getDefault());
+        private final List<Long> dates;
+
+        public DateValueFormatter(List<Long> dates) {
+            this.dates = dates;
+        }
+
+        @Override
+        public String getFormattedValue(float value) {
+            if (value >= 0 && value < dates.size()) {
+                return mFormat.format(new Date(dates.get((int) value)));
+            }
+            return "";
+        }
+    }
+
     private void setupBarChart(List<Baja> bajas) {
         List<BarEntry> entries = new ArrayList<>();
-        HashMap<LocalDate, Integer> fechaMap = new HashMap<>();
+        HashMap<Long, Integer> fechaMap = new HashMap<>();
+        List<Long> dates = new ArrayList<>();
 
         for (Baja baja : bajas) {
-            LocalDate date = baja.getFecha();
+            long dateMillis = baja.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
             int cantidad = baja.getCantidad();
-            fechaMap.put(date, fechaMap.getOrDefault(date, 0) + cantidad);
+            fechaMap.put(dateMillis, fechaMap.getOrDefault(dateMillis, 0) + cantidad);
+
         }
 
         int index = 0;
-        for (Map.Entry<LocalDate, Integer> entry : fechaMap.entrySet()) {
+        for (Map.Entry<Long, Integer> entry : fechaMap.entrySet()) {
             entries.add(new BarEntry(index++, entry.getValue()));
+            dates.add(entry.getKey());
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Bajas por día");
         BarData data = new BarData(dataSet);
         barChart.setData(data);
-        barChart.invalidate(); // refresh
+
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new DateValueFormatter(dates));
+
+        barChart.invalidate();
+        barChart.getDescription().setEnabled(false);
+
     }
 
     private void setupPieChart(List<Baja> bajas) {
@@ -130,10 +173,10 @@ public class GraficosView extends AppCompatActivity {
         }
 
         PieDataSet dataSet = new PieDataSet(entries, "Tipos de Baja");
-        dataSet.setColors(ColorTemplate.MATERIAL_COLORS); // Set color template
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         PieData data = new PieData(dataSet);
         pieChart.setData(data);
-        pieChart.invalidate(); // Refresh
+        pieChart.invalidate();
+        pieChart.getDescription().setEnabled(false);
     }
-
 }

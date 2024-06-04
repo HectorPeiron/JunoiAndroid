@@ -27,7 +27,7 @@ public class ModifyCrianzaModel implements ModifyCrianzaContract.Model {
 
             @Override
             public void onFailure(Call<Crianza> call, Throwable t) {
-                listener.onModificationError("Failure: " + t.getMessage());
+                listener.onModificationError("Error: " + t.getMessage());
             }
         });
     }

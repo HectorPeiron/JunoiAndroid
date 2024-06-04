@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Animal.AddAnimalView">
+    tools:context=".view.Animal.AddAnimalView"
+    >
 
     <!-- Imagen de fondo -->
     <ImageView
@@ -24,6 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:background="@drawable/img_volver" />
 
             <EditText
                 android:id="@+id/etNumero"
@@ -64,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/ver_animales_button" />
+
 
         </LinearLayout>
     </ScrollView>

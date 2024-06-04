@@ -1,5 +1,8 @@
 package com.tfgjunio.presenter.Compra;
 
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
 import com.tfgjunio.contract.Compra.AddCompraContract;
 import com.tfgjunio.domain.Compra;
 import com.tfgjunio.domain.Recurso;
@@ -14,7 +17,6 @@ public class AddCompraPresenter implements AddCompraContract.Presenter {
         this.view = view;
         this.model = model;
     }
-
 
     @Override
     public void loadRecursos() {
@@ -46,5 +48,20 @@ public class AddCompraPresenter implements AddCompraContract.Presenter {
         });
     }
 
+    @Override
+    public void loadRecursosParaSpinner(Spinner spinner) {
+        model.loadRecursos(new AddCompraContract.Model.OnRecursosLoadedListener() {
+            @Override
+            public void onRecursosLoaded(List<Recurso> recursos) {
+                ArrayAdapter<Recurso> adapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, recursos);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+            }
 
+            @Override
+            public void onLoadError(String message) {
+                view.showError(message);
+            }
+        });
+    }
 }

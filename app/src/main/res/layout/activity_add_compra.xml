@@ -4,19 +4,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".view.Compra.AddCompraView">
-
+    tools:context=".view.Compra.AddCompraView"
+    android:background="@drawable/wallpaper">
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:background="@drawable/img_volver" />
     <EditText
         android:id="@+id/etDescripcionCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/descripcion_compra_hint" />
 
-    <Spinner
-        android:id="@+id/spinnerRecurso"
+    <LinearLayout
+        android:id="@+id/spinnerContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Spinner
+            android:id="@+id/spinnerRecurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnAgregarRecurso"

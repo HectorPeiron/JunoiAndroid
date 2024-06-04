@@ -34,6 +34,8 @@ public class AddAnimalView extends AppCompatActivity implements AddAnimalContrac
     private Spinner spinnerTipoAnimal;
     private Button btnGuardarAnimal;
     private Button btnVerAnimales;
+
+    private Button btnVolver;
     private AddAnimalPresenter presenter;
     private PreferencesHelper preferencesHelper;
 
@@ -56,6 +58,14 @@ public class AddAnimalView extends AppCompatActivity implements AddAnimalContrac
         spinnerTipoAnimal = findViewById(R.id.spinnerTipoAnimal);
         btnGuardarAnimal = findViewById(R.id.btnGuardarAnimal);
         btnVerAnimales = findViewById(R.id.btnVerAnimales);
+        btnVolver = findViewById(R.id.btnVolver);
+
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
+
 
 
         btnVerAnimales.setOnClickListener(v -> {

@@ -2,6 +2,8 @@ package com.tfgjunio.view.Crianza;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +19,8 @@ import com.tfgjunio.model.Crianza.AddCrianzaModel;
 import com.tfgjunio.model.Crianza.ModifyCrianzaModel;
 import com.tfgjunio.presenter.Crianza.AddCrianzaPresenter;
 import com.tfgjunio.presenter.Crianza.ModifyCrianzaPresenter;
+import com.tfgjunio.utils.DialogDismissListener;
+import com.tfgjunio.utils.InfoDialogFragment;
 import com.tfgjunio.utils.PreferencesHelper;
 import com.tfgjunio.view.Animal.AddAnimalView;
 import com.tfgjunio.view.Baja.AddBajaView;
@@ -24,8 +28,10 @@ import com.tfgjunio.view.Compra.AddCompraView;
 import com.tfgjunio.view.CorreoView;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContract.View, ModifyCrianzaContract.View {
+public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContract.View, ModifyCrianzaContract.View, DialogDismissListener {
 
     private Button btnGuardarCrianza;
     private Button btnCrianzaAnimal;
@@ -33,16 +39,17 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
     private Button btnCrianzaBajas;
     private Button btnCrianzasAnteriores;
     private Button btnSoporte;
-
     private Button btnVerCrianza;
     private Button btnFinalizarCrianza;
-
     private ImageView imgBackground;
     private ImageView principal;
 
     private AddCrianzaPresenter addCrianzaPresenter;
     private ModifyCrianzaPresenter modifyCrianzaPresenter;
     private PreferencesHelper preferencesHelper;
+
+    private List<String> infoMessages;
+    private int currentMessageIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,47 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
 
         setupButtons();
         checkActiveCrianza();
+        setupInfoMessages();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_info) {
+            currentMessageIndex = 0;
+            showNextInfoDialog();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupInfoMessages() {
+        infoMessages = new ArrayList<>();
+        infoMessages.add(getString(R.string.info_message_1));
+        infoMessages.add(getString(R.string.info_message_2));
+        infoMessages.add(getString(R.string.info_message_3));
+        infoMessages.add(getString(R.string.info_message_4));
+        infoMessages.add(getString(R.string.info_message_5));
+        infoMessages.add(getString(R.string.info_message_6));
+    }
+
+    public void showNextInfoDialog() {
+        if (currentMessageIndex < infoMessages.size()) {
+            InfoDialogFragment dialogFragment = InfoDialogFragment.newInstance(infoMessages.get(currentMessageIndex), this);
+            dialogFragment.show(getSupportFragmentManager(), "infoDialog");
+            currentMessageIndex++;
+        }
+    }
+
+    @Override
+    public void onDialogDismiss() {
+        showNextInfoDialog();
     }
 
     private void setupButtons() {
@@ -68,6 +116,7 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
         btnVerCrianza = findViewById(R.id.btnVerCrianza);
         imgBackground = findViewById(R.id.imgBackground);
         principal = findViewById(R.id.principal);
+
         btnGuardarCrianza.setOnClickListener(v -> {
             LocalDate fechaInicio = LocalDate.now();
             Crianza crianza = new Crianza(fechaInicio);
@@ -78,7 +127,7 @@ public class AddCrianzaView extends AppCompatActivity implements AddCrianzaContr
             long crianzaId = preferencesHelper.getCrianzaId();
             if (crianzaId != -1) {
                 String fechaInicioStr = preferencesHelper.getCrianzaFechaInicio();
-                if(fechaInicioStr != null) {
+                if (fechaInicioStr != null) {
                     LocalDate fechaInicio = LocalDate.parse(fechaInicioStr);
                     LocalDate fechaFin = LocalDate.now();
                     Crianza crianza = new Crianza(crianzaId, fechaInicio, fechaFin, null, null, null);

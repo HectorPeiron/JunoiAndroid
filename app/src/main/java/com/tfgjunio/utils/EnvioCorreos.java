@@ -10,7 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 public class EnvioCorreos {
     private final String username = "hectorpeiron@gmail.com";
-    private final String password = "kfax xkua cexz nlic"; // Usar contraseña de aplicación generada
+    private final String password = "kfax xkua cexz nlic"; //Contraseña generada despues de 2FA
     public void sendMail(String toEmail, String subject, String messageBody) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

@@ -1,6 +1,8 @@
 package com.tfgjunio.view.Crianza;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,8 +32,11 @@ public class CrianzaDetailView extends AppCompatActivity {
     private AnimalAdapter animalAdapter;
     private CompraAdapter compraAdapter;
     private BajaAdapter bajaAdapter;
+    private Button btnVolver;
+
     private PreferencesHelper preferencesHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,13 @@ public class CrianzaDetailView extends AppCompatActivity {
         animalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         compraRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bajaRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        btnVolver = findViewById(R.id.btnVolver);
 
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
         loadCrianzaDetails();
     }
 

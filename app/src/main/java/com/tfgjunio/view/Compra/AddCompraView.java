@@ -2,9 +2,11 @@ package com.tfgjunio.view.Compra;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,7 +17,6 @@ import com.tfgjunio.contract.Compra.AddCompraContract;
 import com.tfgjunio.domain.Compra;
 import com.tfgjunio.domain.Crianza;
 import com.tfgjunio.domain.Recurso;
-import com.tfgjunio.domain.TipoAnimal;
 import com.tfgjunio.model.Compra.AddCompraModel;
 import com.tfgjunio.presenter.Compra.AddCompraPresenter;
 import com.tfgjunio.utils.PreferencesHelper;
@@ -26,10 +27,11 @@ import java.util.List;
 
 public class AddCompraView extends AppCompatActivity implements AddCompraContract.View {
     private EditText etDescripcion;
-    private Spinner spinnerRecurso;
-    private Button btnGuardarCompra, btnVerCompras;
+    private LinearLayout spinnerContainer;
+    private Button btnAgregarRecurso, btnGuardarCompra, btnVerCompras, btnVolver;
     private AddCompraPresenter presenter;
     private PreferencesHelper preferencesHelper;
+    private List<Spinner> spinnersList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,19 @@ public class AddCompraView extends AppCompatActivity implements AddCompraContrac
 
     private void setupViews() {
         etDescripcion = findViewById(R.id.etDescripcionCompra);
-        spinnerRecurso = findViewById(R.id.spinnerRecurso);
+        spinnerContainer = findViewById(R.id.spinnerContainer);
+        btnAgregarRecurso = findViewById(R.id.btnAgregarRecurso);
         btnGuardarCompra = findViewById(R.id.btnGuardarCompra);
         btnVerCompras = findViewById(R.id.btnVerCompras);
+        btnVolver = findViewById(R.id.btnVolver);
+
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
+
+        // Añadir el spinner inicial a la lista
+        spinnersList.add(findViewById(R.id.spinnerRecurso));
 
         btnVerCompras.setOnClickListener(v -> {
             Intent intent = new Intent(AddCompraView.this, CompraListView.class);
@@ -57,11 +69,13 @@ public class AddCompraView extends AppCompatActivity implements AddCompraContrac
         btnGuardarCompra.setOnClickListener(v -> {
             long crianzaId = preferencesHelper.getCrianzaId();
             if (crianzaId != -1) {
-                LocalDate fechaCompra = LocalDate.now();  // or parse from etFechaCompra if set by the user
+                LocalDate fechaCompra = LocalDate.now();
                 String descripcion = etDescripcion.getText().toString();
-                Recurso recursoSeleccionado = (Recurso) spinnerRecurso.getSelectedItem();
                 List<Recurso> recursos = new ArrayList<>();
-                recursos.add(recursoSeleccionado);
+                for (Spinner spinner : spinnersList) {
+                    Recurso recursoSeleccionado = (Recurso) spinner.getSelectedItem();
+                    recursos.add(recursoSeleccionado);
+                }
                 Crianza crianza = new Crianza();
                 crianza.setId(crianzaId);
 
@@ -71,13 +85,32 @@ public class AddCompraView extends AppCompatActivity implements AddCompraContrac
                 Toast.makeText(this, "No hay crianza activa", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnAgregarRecurso.setOnClickListener(v -> agregarNuevoSpinner());
+    }
+
+    private void agregarNuevoSpinner() {
+        Spinner nuevoSpinner = new Spinner(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.setMargins(0, 16, 0, 0);
+        nuevoSpinner.setLayoutParams(layoutParams);
+
+        spinnerContainer.addView(nuevoSpinner);
+        spinnersList.add(nuevoSpinner);
+
+        presenter.loadRecursosParaSpinner(nuevoSpinner);
     }
 
     @Override
     public void showRecursos(List<Recurso> recursos) {
         ArrayAdapter<Recurso> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, recursos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerRecurso.setAdapter(adapter);
+        for (Spinner spinner : spinnersList) {
+            spinner.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -93,6 +126,6 @@ public class AddCompraView extends AppCompatActivity implements AddCompraContrac
     @Override
     public void onCompraAdded() {
         Toast.makeText(this, "Compra registrada correctamente", Toast.LENGTH_SHORT).show();
-        finish(); // Cerrar la actividad una vez que la compra es agregada correctamente
+        finish();
     }
 }

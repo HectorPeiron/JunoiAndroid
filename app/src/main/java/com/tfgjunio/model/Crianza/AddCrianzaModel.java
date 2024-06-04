@@ -43,7 +43,7 @@ public class AddCrianzaModel implements AddCrianzaContract.Model {
             });
         } catch (SQLiteConstraintException sce) {
             sce.printStackTrace();
-            String message = "Error de restricción de SQLite: " + sce.getMessage();
+            String message = "Error: " + sce.getMessage();
             Log.e("Crianza", message);
             listener.onRegisterError(message);
         }

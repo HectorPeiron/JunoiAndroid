@@ -25,13 +25,13 @@ public class AddCompraModel implements AddCompraContract.Model {
                 if (response.isSuccessful()) {
                     listener.onCompraAdded();
                 } else {
-                    listener.onAddError("Error adding purchase: " + response.message());
+                    listener.onAddError("Error compra: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Compra> call, Throwable t) {
-                listener.onAddError("Failure: " + t.getMessage());
+                listener.onAddError("Error: " + t.getMessage());
             }
         });
     }
@@ -45,7 +45,7 @@ public class AddCompraModel implements AddCompraContract.Model {
                 if (response.isSuccessful()) {
                     listener.onRecursosLoaded(response.body());
                 } else {
-                    listener.onLoadError("Error fetching resources: " + response.message());
+                    listener.onLoadError("Error cargar recursos: " + response.message());
                 }
             }
 

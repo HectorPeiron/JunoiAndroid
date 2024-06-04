@@ -1,5 +1,7 @@
 package com.tfgjunio.contract.Compra;
 
+import android.widget.Spinner;
+
 import com.tfgjunio.domain.Compra;
 import com.tfgjunio.domain.Recurso;
 
@@ -16,6 +18,7 @@ public interface AddCompraContract {
     interface Presenter {
         void addCompra(Compra compra);
         void loadRecursos();
+        void loadRecursosParaSpinner(Spinner spinner);
     }
 
     interface Model {

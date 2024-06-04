@@ -97,7 +97,7 @@ public class CrianzaAdapter extends RecyclerView.Adapter<CrianzaAdapter.CrianzaV
         dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         PieData data = new PieData(dataSet);
         pieChart.setData(data);
-        pieChart.invalidate(); // Refresh the chart
+        pieChart.invalidate();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.tfgjunio.view.Compra;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +26,10 @@ public class CompraListView extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CompraAdapter compraAdapter;
     private PreferencesHelper preferencesHelper;
+    private Button btnVolver;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,12 @@ public class CompraListView extends AppCompatActivity {
         preferencesHelper = new PreferencesHelper(this);
         recyclerView = findViewById(R.id.compraRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        btnVolver = findViewById(R.id.btnVolver);
 
+        btnVolver.setOnClickListener(v -> {
+            onBackPressed();
+
+        });
         loadCompras();
     }
 
